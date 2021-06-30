@@ -1,0 +1,18 @@
+#+title: TrueRandom
+
+#+html: <a href="https://github.com/tecosaur/TrueRandom.jl/actions"><img src="https://github.com/tecosaur/TrueRandom.jl/workflows/CI/badge.svg" alt="Build Status"></a>
+
+Alternate random number generators based on 'True' random sources.
+Approximately a thousand times slower than the default =Random.MersenneTwister=
+generator, and relies on a network connection.
+
+* Randomness sources
+** [[https://qrng.anu.edu.au/][ANU QRNG]]
+Measurement of quantum fluctuations of the vacuum.
+
+*Usage*
+#+begin_src julia
+using TrueRandom
+rng = ANUQRNG()
+rand(rng)
+#+end_src
