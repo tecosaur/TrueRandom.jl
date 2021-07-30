@@ -5,7 +5,14 @@ mutable struct ANUQRNG <: AbstractRNG
     prefillthreshold::Integer
     cacheprefill::Vector{UInt16}
     currentlyprefilling::Bool
-    function ANUQRNG(batchsize=1024,prefillthreshold=round(Int, 0.75*batchsize); prefill=true)
+    @doc """
+    function ANUQRNG(batchsize=1024, prefillthreshold=round(Int, 0.75*batchsize); prefill=true)
+
+Create a new random number generator based on the ANU QRNG API which fetches random UInt16s in
+batches of `bachsize`. As long as `prefill` is true, the next batch will be pre-fetched when
+less than `prefillthreshold` UInt16s in the batch are unused.
+"""
+    function ANUQRNG(batchsize=1024, prefillthreshold=round(Int, 0.75*batchsize); prefill=true)
         if batchsize == 0
             @warn "Setting `batchsize` to 0 is a really bad idea. Please reconsider."
         end
